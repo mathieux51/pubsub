@@ -20,4 +20,5 @@
 
 * web socket with go
 * use this repository as [example](https://github.com/heroku-examples/go-websocket-chat-demo/blob/master/redis.go)
+* Send web socket from JS
 
