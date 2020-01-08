@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import { WSContext } from './context/WSContext'
+// import { WSProvider } from 'src/context/WSContext'
 
 const Container = styled.div`
   display: flex;
@@ -25,13 +27,14 @@ const Input = styled.input`
 `
 
 function App() {
+  const { messages, send } = React.useContext(WSContext)
   const [value, setValue] = React.useState('')
   const handleChange = event => setValue(event.target.value)
 
   const handleSubmit = event => {
     event.preventDefault()
     event.stopPropagation()
-    alert('A name was submitted: ' + value)
+    send(value)
   }
   return (
     <Container>
@@ -47,6 +50,11 @@ function App() {
       </SubContainer>
       <SubContainer>
         <Title>Receive</Title>
+        <ul>
+          {messages.map((message, i) => (
+            <li key={message + i}>{message}</li>
+          ))}
+        </ul>
       </SubContainer>
     </Container>
   )
